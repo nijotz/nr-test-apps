@@ -1,0 +1,15 @@
+{
+  "name": "tracecontext",
+  "version": "1.0.0",
+  "description": "tracecontext example app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "dependencies": {
+    "fastify": "^2.3.0",
+    "newrelic": "^6.8.0"
+  }
+}
