@@ -1,0 +1,42 @@
+version: "3"
+services:
+    db:
+        container_name: blag_db
+        restart: always
+        image: psql
+        build:
+            context: ./db
+        volumes:
+            - ./db/data/:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=password
+            - POSTGRES_DB=blag
+        networks:
+            - network
+        ports:
+            - 5432:5432
+
+    graphql:
+        container_name: blag_graphql
+        restart: always
+        image: graphql
+        build:
+            context: ./graphql
+        volumes:
+            - ./graphql/:/usr/src/app
+        environment:
+            - DATABASE_URL=postgres://postgres:password@db:5432/blag
+            - NEW_RELIC_LICENSE_KEY=redacted
+        depends_on:
+            - db
+        networks:
+            - network
+        ports:
+            - 4000:4000
+
+networks:
+    network:
+
+volumes:
+    db:
