@@ -8,6 +8,7 @@ const typeDefs = gql`
     name: String
     bio: String
     posts: [Post]
+    views: Int
   }
 
   type Post {
@@ -15,6 +16,7 @@ const typeDefs = gql`
     title: String
     text: String
     author: Author
+    views: Int
   }
 
   type Query {

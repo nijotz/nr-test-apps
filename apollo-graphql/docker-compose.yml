@@ -17,6 +17,20 @@ services:
         ports:
             - 5432:5432
 
+    redis:
+        container_name: blag_redis
+        restart: always
+        image: redis
+        build:
+            context: ./redis
+        volumes:
+            - ./redis/data:/var/lib/redis
+            - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+        networks:
+            - network
+        ports:
+            - 6379:6379
+
     graphql:
         container_name: blag_graphql
         restart: always
@@ -30,6 +44,7 @@ services:
             - NEW_RELIC_LICENSE_KEY=redacted
         depends_on:
             - db
+            - redis
         networks:
             - network
         ports:
