@@ -19,7 +19,8 @@ const server = new ApolloServer({
       models,
       redis
     }
-  }
+  },
+  tracing: true
 })
 
 server
