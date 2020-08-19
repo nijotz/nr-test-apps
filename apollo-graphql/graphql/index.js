@@ -20,7 +20,7 @@ const server = new ApolloServer({
       redis
     }
   },
-  tracing: true
+  // tracing: true
 })
 
 server
