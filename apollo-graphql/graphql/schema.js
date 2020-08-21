@@ -36,6 +36,10 @@ const typeDefs = gql`
     post(id: ID!): Post
     search(contains: String!): [Result]
   }
+
+  type Mutation {
+    updateAuthor(id: ID!, name: String, bio: String): Author
+  }
 `
 
 module.exports = typeDefs

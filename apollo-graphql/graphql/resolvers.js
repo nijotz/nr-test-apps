@@ -101,6 +101,17 @@ module.exports = {
     }
   },
 
+  Mutation: {
+    updateAuthor: async (parent, { id, name, bio }, { dataSources }) => {
+      const models = dataSources.models
+      let author = await models.Author.findByPk(id)
+      if (name) { author.name = name }
+      if (bio) { author.bio = bio }
+      await author.save()
+      return author
+    }
+  },
+
   Result: {
     __resolveType(obj, context, info) {
       if (obj.name) {

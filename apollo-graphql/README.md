@@ -72,6 +72,20 @@ http://localhost:4000/
   }
 }
 
+# A mutation (top part is the operation, bottom part is the "Query Variables"
+mutation updateAuthor($id:ID!, $name:String, $bio:String) {
+  updateAuthor(id:$id, name:$name, bio:$bio) {
+    id
+    name
+    bio
+  }
+}
+
+{
+  "id": 1,
+  "name": "test"
+  "bio": "a new bio"
+}
 
 # Query batching via curl
 curl -s 'http://localhost:4000/' -H 'Content-Type: application/json' --data-binary '[{"query":"query getAuthors {\n  authors {\n    id\n    name\n    bio\n  }\n}\n\n"}, {"query": "query getPosts {\n  posts {\n    id\n    title\n    text\n  }\n}"}]' | python -m json.tool
