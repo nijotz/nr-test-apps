@@ -3,6 +3,10 @@ put New Relic license in docker-compose.yml
 
 docker-compose up
 
+# Example React app
+http://localhost:3000/
+
+# GraphQL playground
 http://localhost:4000/
 
 # A query that hits two resolvers

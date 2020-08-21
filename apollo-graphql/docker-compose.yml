@@ -50,6 +50,25 @@ services:
         ports:
             - 4000:4000
 
+    react:
+        container_name: blag_react
+        restart: always
+        image: react
+        build:
+            context: ./react
+        volumes:
+            - ./react/:/usr/src/app
+        depends_on:
+            - db
+            - redis
+            - graphql
+        networks:
+            - network
+        ports:
+            - 3000:3000
+        # A fix for react-scripts 3.4.1 failing in Docker
+        tty: true
+
 networks:
     network:
 
