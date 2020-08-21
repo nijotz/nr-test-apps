@@ -19,11 +19,14 @@ const typeDefs = gql`
     views: Int
   }
 
+  union Result = Author | Post
+
   type Query {
     authors: [Author]!
     posts: [Post]!
     author(id: ID!): Author
     post(id: ID!): Post
+    search(contains: String!): [Result]
   }
 `
 
