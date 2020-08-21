@@ -5,6 +5,7 @@ docker-compose up
 
 http://localhost:4000/
 
+# A query that hits two resolvers
 {
   authors {
     id
@@ -20,6 +21,7 @@ http://localhost:4000/
   }
 }
 
+# A query for one author
 {
   author(id: 1) {
     id
@@ -29,6 +31,7 @@ http://localhost:4000/
   }
 }
 
+# A query for one post
 {
   post(id: 1) {
     id
