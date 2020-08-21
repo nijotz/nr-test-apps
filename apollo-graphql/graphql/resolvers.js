@@ -46,6 +46,8 @@ module.exports = {
     },
 
     post: async (parent, { id }, { dataSources }) => {
+      if (id == 13) { throw new Error('Nope.') }
+
       const models = dataSources.models
       const redis = dataSources.redis
       const Post = models.Post
@@ -70,6 +72,8 @@ module.exports = {
     },
 
     author: async (parent, { id }, { dataSources }) => {
+      if (id == 13) { throw new Error('Nope.') }
+
       const models = dataSources.models
       const redis = dataSources.redis
       const Author = models.Author
