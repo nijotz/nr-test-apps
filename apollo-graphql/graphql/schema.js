@@ -3,12 +3,19 @@
 const { gql } = require('apollo-server')
 
 const typeDefs = gql`
+  directive @date(
+    defaultFormat: String = "mmmm d, yyyy"
+  ) on FIELD_DEFINITION
+
+  scalar Date
+
   type Author {
     id: Int
     name: String
     bio: String
     posts: [Post]
     views: Int
+    created_date: Date @date
   }
 
   type Post {
@@ -17,6 +24,7 @@ const typeDefs = gql`
     text: String
     author: Author
     views: Int
+    created_date: Date @date
   }
 
   union Result = Author | Post

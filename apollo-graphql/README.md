@@ -23,11 +23,12 @@ http://localhost:4000/
 
 # A query for one author
 {
-  author(id: 1) {
+  author(id: 2) {
     id
     name
     bio
     views
+    created_date(format: "dd/mm/yy")
   }
 }
 
@@ -38,6 +39,7 @@ http://localhost:4000/
     text
     title
     views
+    created_date
   }
 }
 
