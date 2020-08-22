@@ -23,7 +23,11 @@ function Home(props) {
     <div className="Post">
       <h1>{data.post.title}</h1>
       <h2>by {data.post.author.name}</h2>
-      <p>{data.post.text}</p>
+      {data.post.text.split('\n').map((value, i) => (
+        <span key={i}>
+          {value}<br />
+        </span>
+      ))}
     </div>
   )
 }
