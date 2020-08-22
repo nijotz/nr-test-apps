@@ -21,7 +21,7 @@ http://localhost:4000/
   }
 }
 
-# A query for one author
+# A query for one author (with custom date formatting)
 {
   author(id: 2) {
     id
@@ -29,6 +29,11 @@ http://localhost:4000/
     bio
     views
     created_date(format: "dd/mm/yy")
+    posts {
+      id
+      title
+      text
+    }
   }
 }
 
@@ -40,6 +45,10 @@ http://localhost:4000/
     title
     views
     created_date
+    author {
+      name
+      bio
+    }
   }
 }
 

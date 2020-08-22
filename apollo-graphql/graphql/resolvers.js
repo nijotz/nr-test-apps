@@ -39,7 +39,8 @@ module.exports = {
       const Post = models.Post
       const postViewsIncrementer = viewsIncrementer(redis, Post)
 
-      let posts = await Post.findAll({raw: true})
+      let posts = await Post.findAll(
+        {raw: true, nest: true, include: {model: models.Author, as: 'author'}})
       posts = await postViewsIncrementer(posts)
 
       return posts
@@ -53,7 +54,8 @@ module.exports = {
       const Post = models.Post
       const postViewsIncrementer = viewsIncrementer(redis, Post)
 
-      let post = await models.Post.findByPk(id, {raw: true})
+      let post = await models.Post.findByPk(id,
+        {raw: true, nest: true, include: {model: models.Author, as: 'author'}})
       post = await postViewsIncrementer(post)
 
       return post
@@ -98,6 +100,16 @@ module.exports = {
       }))
 
       return results.flat()
+    }
+  },
+
+  Author: {
+    posts: async (parent, { args }, { dataSources }) => {
+      const models = dataSources.models
+      const posts = await models.Post.findAll({
+        where: { author_id: parent.id }
+      })
+      return posts
     }
   },
 

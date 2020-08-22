@@ -1,16 +1,19 @@
 'use strict'
 
-const author = (sequelize, DataTypes) => {
-  const Author = sequelize.define('Author', {
-    id: { type: DataTypes.INTEGER, primaryKey: true },
-    name: DataTypes.STRING,
-    bio: DataTypes.STRING,
-    created_date: DataTypes.DATE
-  }, {
-    tableName: 'author',
-    timestamps: false
-  })
-  return Author
-}
+const { DataTypes, Model } = require('sequelize')
+const sequelize = require('./db')
 
-module.exports = author
+class Author extends Model {}
+
+Author.init({
+  id: { type: DataTypes.INTEGER, primaryKey: true },
+  name: DataTypes.STRING,
+  bio: DataTypes.STRING,
+  created_date: DataTypes.DATE
+}, {
+  sequelize,
+  tableName: 'author',
+  timestamps: false
+})
+
+module.exports = Author
