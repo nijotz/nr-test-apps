@@ -63,11 +63,13 @@ const shimPlugin = (options) => {
           if (!name) {
             name = deepestPath(context).name
           }
-          console.log('name', name)
-          segmentMap.get('root').segment.name = `Operation: ${name}`
+
+          const rootSeg = segmentMap.get('root').segment
+          rootSeg.name = `Operation: ${name}`
+          nr.setTransactionName(`Operation: ${name}`)
         },
         executionDidStart: () => ({
-          willResolveField({info, context}) {
+          willResolveField({info}) {
             if (isQueryOrMutation(info.parentType)) {
               // get root segment to add as parent to Query segment
               const rootSeg = segmentMap.get('root').segment
@@ -96,7 +98,7 @@ const shimPlugin = (options) => {
               }
             }
           }
-        }),
+        })
       }
     }
   }
