@@ -36,7 +36,14 @@ function deepestPath(context) {
     return deepest
   })
 
-  return deepestChild
+  return deepestChild.name
+}
+
+function topFields(context) {
+  const definitions = context.document.definitions
+  // this will probably break with query batching
+  const names = definitions[0].selectionSet.selections.map(s => s.name.value)
+  return names.join(',')
 }
 
 const shimPlugin = (options) => {
@@ -61,7 +68,7 @@ const shimPlugin = (options) => {
         didResolveOperation(context) {
           let name = context.operationName
           if (!name) {
-            name = deepestPath(context).name
+            name = topFields(context)
           }
 
           const rootSeg = segmentMap.get('root').segment
