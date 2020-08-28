@@ -73,6 +73,13 @@ const shimPlugin = (options) => {
 
           const rootSeg = segmentMap.get('root').segment
           rootSeg.name = `Operation: ${name}`
+
+          let query = context.request.query
+          query = query
+            .replace(/\n/g, '')
+            .replace(/  */g, ' ')
+            .trim()
+          rootSeg.addAttribute('query', query)
           nr.setTransactionName(`Operation: ${name}`)
         },
         executionDidStart: () => ({
