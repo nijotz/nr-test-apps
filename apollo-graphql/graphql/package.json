@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@newrelic/apollo-server-plugin": "^0.1.0",
     "apollo-server": "^2.16.1",
     "dateformat": "^3.0.3",
     "ioredis": "^4.17.3",
-    "newrelic": "^6.12.0",
+    "newrelic": "^6.13.2",
     "nodemon": "^2.0.4",
     "pg": "^8.3.0",
     "sequelize": "^6.3.4"

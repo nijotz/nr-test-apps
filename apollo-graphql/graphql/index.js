@@ -7,7 +7,7 @@ const dateformat = require('dateformat')
 const { defaultFieldResolver, GraphQLString } = require('graphql')
 const Redis = require('ioredis')
 
-const shimPlugin = require('./plugin')
+const plugin = require('@newrelic/apollo-server-plugin')
 const typeDefs = require('./schema')
 const resolvers = require('./resolvers')
 const models = require('./models')
@@ -44,7 +44,7 @@ const server = new ApolloServer({
       redis
     }
   },
-  plugins: [ shimPlugin({newrelic}) ]
+  plugins: [plugin]
 })
 
 server
