@@ -31,6 +31,10 @@ function viewsIncrementer(redis, model) {
   }
 }
 
+async function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
+
 module.exports = {
   Query: {
     posts: async (parent, args, { dataSources }) => {
@@ -38,6 +42,8 @@ module.exports = {
       const redis = dataSources.redis
       const Post = models.Post
       const postViewsIncrementer = viewsIncrementer(redis, Post)
+
+      await sleep(1000)
 
       let posts = await Post.findAll(
         {raw: true, nest: true, include: {model: models.Author, as: 'author'}})
