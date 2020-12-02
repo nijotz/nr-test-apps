@@ -1,0 +1,9 @@
+global:
+  scrape_interval: 5s
+scrape_configs:
+  - job_name: "example-nodejs-app"
+    static_configs:
+      - targets: ["docker.for.mac.host.internal:8080"]
+remote_write:
+  - url: https://metric-api.newrelic.com/prometheus/v1/write?prometheus_server=example-nodejs-app
+    bearer_token: 47dfc272966945f959759d9361d4af020a19d93d
